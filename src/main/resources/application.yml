@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: Assis
+
+logging:
+  register-shutdown-hook: false
+
+  level:
+    root: OFF
