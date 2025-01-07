@@ -31,21 +31,39 @@ public class GenerateCommandsList {
                 ru -> Russian
                
                "type [text]" -> types text in the active window
+               "typeIn [time] [text]" -> types text in the active window after time
+               
+               "file [subcommand]":
+                "add [name] [path]" -> add variable in the "locales.txt" file
+                "addRun [name] [path]" -> add variable in the "locales.txt" file and run it
+                "addDRun [name] [path]" -> add variable in the "locales.txt" file, decrypt and run it
+                "run [name/path]" -> run commands list from this file
+                "drun [name/path]" -> decrypt and run commands list from this file
+                "encrypt [name/path]" -> encrypt commands list in this file
+                "decrypt [name/path]" -> decrypt commands list in this file
                
                "changeName [name]" -> change the name of Speech-to-Text model in the "properties.txt" file
-               "findDepth", "find_depth", "find-depth", "finddepth", "fd" ->
+               "findDepth", "find_depth", "find-depth", "finddepth", "fd [amount]" ->
                change the How many subfolders could check the program when searching file;
                in the "properties.txt" file
+               "typeSpeed [time]" -> time (ms) between typing keys save into the "properties.txt" file
                
                "repo [subcommand]":
                 "save" -> save all variables in the "locales.txt" file
                 "read" -> read all variables in the "locales.txt" file
                 "find [name]" -> the same as "path [name]", but without checking is variable exists
-                "repo list" -> print all variables in the "locales.txt" file
+                "repo list" -> print variables in the "locales.txt" file
                 "dirs [subcommand]":
                  "save [path]" -> save directory where to search files in the "dirs.txt" file
                  "read" -> print directories where to search files from the "dirs.txt" file
                
+               "scripts [subcommand]":
+                "list" -> print scripts in the "locales.txt" file
+                "add [name] [path]" -> add variable in the "locales.txt" file
+                "run [name]" -> same as "file run [name]"
+                "update" -> check "scripts" folder
+               
+               "wait [time]" -> stops program for a time
                "exit" -> exit the program""";
     }
 

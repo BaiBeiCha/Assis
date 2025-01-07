@@ -72,11 +72,29 @@ public class FileTools {
         return list;
     }
 
+    public static String readFileAsString(String path) {
+        List<String> list = readFile(path);
+
+        StringBuilder sb = new StringBuilder();
+        for(String s : list) {
+            sb.append(s).append("\n");
+        }
+
+        return sb.toString();
+    }
+
     public static void clearFile(String path) {
         writeFile(path, "", false);
     }
 
     public static String getUser() {
         return System.getProperty("user.name");
+    }
+
+    public static void createDirectory(String path) {
+        File file = new File(path);
+        if (!file.exists()) {
+            file.mkdirs();
+        }
     }
 }

@@ -9,4 +9,8 @@ public class KeyStroke {
         this.keyCode = keyCode;
         this.shift = shift;
     }
+
+    public String toString() {
+        return (char) (keyCode) + " : " + shift;
+    }
 }

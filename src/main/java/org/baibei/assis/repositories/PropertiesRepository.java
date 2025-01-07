@@ -96,6 +96,18 @@ public class PropertiesRepository {
         return Integer.parseInt(getProperty("find_depth"));
     }
 
+    public int getTypeSpeed() {
+        int speed = Integer.parseInt(getProperty("type_speed"));
+        if (speed < 0) {
+            speed = 0;
+        }
+        return speed;
+    }
+
+    public void setTypeSpeed(int speed) {
+        changeProperty("type_speed", String.valueOf(speed));
+    }
+
     public String getModel() {
         String model = getProperty("model");
         return switch (model) {
@@ -112,6 +124,8 @@ public class PropertiesRepository {
     private void fillStdProperties() {
         properties.add("find_depth=5");
         properties.add("model=en");
+        properties.add("name=hi");
+        properties.add("type_speed=50");
         save();
     }
 }

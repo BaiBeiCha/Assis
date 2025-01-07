@@ -45,6 +45,8 @@ public class AppsLocaleRepository {
             locale.setName(locale.getName().replaceAll(".exe", "").toLowerCase());
         }
 
+        this.locales.removeIf(locale1 -> locale1.getName().equals(locale.getName()));
+
         this.locales.add(locale);
         FileTools.writeFile(repoPath, locale.toString(), true);
     }

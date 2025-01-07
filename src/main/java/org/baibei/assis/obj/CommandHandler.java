@@ -184,6 +184,33 @@ public class CommandHandler {
     }
 
     protected void type(String text) {
-        VoiceToKeyboard.type(text);
+        int speed = propertiesRepository.getTypeSpeed();
+        VoiceToKeyboard.type(text, speed);
+    }
+
+    protected void typeIn(String[] args) {
+        try {
+            int time = Integer.parseInt(args[0]);
+            Thread.sleep(time);
+            type(StringTools.append(args, 1, args.length));
+        } catch (InterruptedException e) {
+            ConsoleOutput.error(e.getMessage());
+        } catch (Exception e) {
+            type(StringTools.append(args));
+        }
+    }
+
+    protected void setTypeSpeed(String[] args) {
+        int speed = Integer.parseInt(args[0]);
+        propertiesRepository.setTypeSpeed(speed);
+    }
+
+    protected void wait(String[] args) {
+        long time = Long.parseLong(args[0]);
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            ConsoleOutput.error(e.getMessage());
+        }
     }
 }

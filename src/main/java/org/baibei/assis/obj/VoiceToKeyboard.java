@@ -38,11 +38,50 @@ public class VoiceToKeyboard {
     private static void initKeyMap() {
         keyMap.put(',', new KeyStroke(KeyEvent.VK_COMMA, false));
         keyMap.put('.', new KeyStroke(KeyEvent.VK_PERIOD, false));
-        keyMap.put('!', new KeyStroke(KeyEvent.VK_1, true));
-        keyMap.put('@', new KeyStroke(KeyEvent.VK_2, true));
         keyMap.put(' ', new KeyStroke(KeyEvent.VK_SPACE, false));
         keyMap.put('\n', new KeyStroke(KeyEvent.VK_ENTER, false));
-        keyMap.put('\\', new KeyStroke(KeyEvent.VK_ENTER, false));
+        keyMap.put('\\', new KeyStroke(KeyEvent.VK_BACK_SLASH, false));
+        keyMap.put('|', new KeyStroke(KeyEvent.VK_BACK_SLASH, true));
+        keyMap.put('/', new KeyStroke(KeyEvent.VK_SLASH, false));
+        keyMap.put('?', new KeyStroke(KeyEvent.VK_SLASH, true));
+        keyMap.put('-', new KeyStroke(KeyEvent.VK_MINUS, false));
+        keyMap.put('_', new KeyStroke(KeyEvent.VK_MINUS, true));
+        keyMap.put('=', new KeyStroke(KeyEvent.VK_EQUALS, false));
+        keyMap.put('+', new KeyStroke(KeyEvent.VK_EQUALS, true));
+        keyMap.put('\"', new KeyStroke(KeyEvent.VK_QUOTE, true));
+        keyMap.put(';', new KeyStroke(KeyEvent.VK_SEMICOLON, false));
+        keyMap.put(':', new KeyStroke(KeyEvent.VK_SEMICOLON, true));
+        keyMap.put('<', new KeyStroke(KeyEvent.VK_COMMA, true));
+        keyMap.put('>', new KeyStroke(KeyEvent.VK_PERIOD, true));
+        keyMap.put('`', new KeyStroke(KeyEvent.VK_BACK_QUOTE, false));
+        keyMap.put('~', new KeyStroke(KeyEvent.VK_BACK_QUOTE, true));
+        keyMap.put('[', new KeyStroke(KeyEvent.VK_OPEN_BRACKET, false));
+        keyMap.put('{', new KeyStroke(KeyEvent.VK_OPEN_BRACKET, true));
+        keyMap.put(']', new KeyStroke(KeyEvent.VK_CLOSE_BRACKET, false));
+        keyMap.put('}', new KeyStroke(KeyEvent.VK_CLOSE_BRACKET, true));
+        keyMap.put('ё', new KeyStroke(KeyEvent.VK_ENTER, false));
+
+        keyMap.put('1', new KeyStroke(KeyEvent.VK_1, false));
+        keyMap.put('2', new KeyStroke(KeyEvent.VK_2, false));
+        keyMap.put('3', new KeyStroke(KeyEvent.VK_3, false));
+        keyMap.put('4', new KeyStroke(KeyEvent.VK_4, false));
+        keyMap.put('5', new KeyStroke(KeyEvent.VK_5, false));
+        keyMap.put('6', new KeyStroke(KeyEvent.VK_6, false));
+        keyMap.put('7', new KeyStroke(KeyEvent.VK_7, false));
+        keyMap.put('8', new KeyStroke(KeyEvent.VK_8, false));
+        keyMap.put('9', new KeyStroke(KeyEvent.VK_9, false));
+        keyMap.put('0', new KeyStroke(KeyEvent.VK_0, false));
+
+        keyMap.put('!', new KeyStroke(KeyEvent.VK_1, true));
+        keyMap.put('@', new KeyStroke(KeyEvent.VK_2, true));
+        keyMap.put('#', new KeyStroke(KeyEvent.VK_3, true));
+        keyMap.put('$', new KeyStroke(KeyEvent.VK_4, true));
+        keyMap.put('%', new KeyStroke(KeyEvent.VK_5, true));
+        keyMap.put('^', new KeyStroke(KeyEvent.VK_6, true));
+        keyMap.put('&', new KeyStroke(KeyEvent.VK_7, true));
+        keyMap.put('*', new KeyStroke(KeyEvent.VK_8, true));
+        keyMap.put('(', new KeyStroke(KeyEvent.VK_9, true));
+        keyMap.put(')', new KeyStroke(KeyEvent.VK_0, true));
 
         keyMap.put('a', new KeyStroke(KeyEvent.VK_A, false));
         keyMap.put('b', new KeyStroke(KeyEvent.VK_B, false));
@@ -99,12 +138,13 @@ public class VoiceToKeyboard {
         keyMap.put('Z', new KeyStroke(KeyEvent.VK_Z, true));
     }
 
-    public static void type(String text) {
+    public static void type(String text, int speed) {
         char[] c = text.toCharArray();
         for (int i = 0; i < c.length; i++) {
             KeyStroke keyStroke = keyMap.get(c[i]);
             if (keyStroke == null) {
-                ConsoleOutput.error("Символ " + c[i] + " не поддерживается!");
+                robot.keyPress(KeyEvent.VK_ENTER);
+                robot.keyRelease(KeyEvent.VK_ENTER);
                 continue;
             }
 
@@ -155,7 +195,7 @@ public class VoiceToKeyboard {
                     robot.keyRelease(KeyEvent.VK_SHIFT);
                 }
             }
-            robot.delay(50);
+            robot.delay(speed);
         }
     }
 }
